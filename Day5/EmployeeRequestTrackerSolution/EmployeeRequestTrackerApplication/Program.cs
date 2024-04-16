@@ -129,6 +129,12 @@ namespace EmployeeRequestTrackerApplication
         Employee CreateEmployee(int id)
         {
             Employee employee = new Employee();
+            Console.WriteLine("Please enter the type of employee");
+            string type = Console.ReadLine();
+            if (type == "Permanent")
+                employee = new PermanentEmployee();
+            else if (type == "Contract")
+                employee = new ContractEmployee();
             employee.Id = 101 + id;
             employee.BuildEmployeeFromConsole();
             return employee;

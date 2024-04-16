@@ -23,6 +23,7 @@
             }
         }
         public double Salary { get; set; }
+        public string Type { get; set; }
 
         public Employee()
         {
@@ -39,7 +40,7 @@
             Salary = salary;
         }
 
-        public void BuildEmployeeFromConsole()
+        public virtual void BuildEmployeeFromConsole()
         {
             Console.WriteLine("Please enter the Name");
             Name = Console.ReadLine() ?? String.Empty;
@@ -49,13 +50,23 @@
             Salary = Convert.ToDouble(Console.ReadLine());
         }
 
-        public void PrintEmployeeDetails()
+        public virtual void PrintEmployeeDetails()
         {
             Console.WriteLine("Employee Id : " + Id);
             Console.WriteLine("Employee Name " + Name);
             Console.WriteLine("Date of birth : " + DateOfBirth);
             Console.WriteLine("Employee Age : " + Age);
+            Console.WriteLine("Employee Type : " + Type);
             Console.WriteLine("Employee Salary : Rs." + Salary);
+        }
+
+        public override string ToString()
+        {
+            return "Employee Type : " + Type
+                + "\nEmployee Id : " + Id
+                + "\nEmployee Name " + Name
+                + "\nDate of birth : " + DateOfBirth
+                + "\nEmployee Age : " + Age;
         }
     }
 }
