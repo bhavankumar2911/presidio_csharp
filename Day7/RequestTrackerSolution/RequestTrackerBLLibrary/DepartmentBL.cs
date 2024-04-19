@@ -59,7 +59,9 @@ namespace RequestTrackerBLLibrary
 
         public Department GetDepartmentById(int id)
         {
-            throw new NotImplementedException();
+            Department department = _departmentRepository.Get(id);
+            if (department == null) throw new DepartmentNotFoundException();
+            return department;
         }
 
         public Department GetDepartmentByName(string departmentName)
