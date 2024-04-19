@@ -81,12 +81,18 @@ namespace RequestTrackerBLLibrary
 
         public int GetDepartmentHeadId(int departmentId)
         {
-            throw new NotImplementedException();
+            Department department = GetDepartmentById(departmentId);
+            
+            return department.Department_Head;
         }
 
         public List<Department> GetDepartmentList()
         {
-            throw new NotImplementedException();
+            List <Department> allDepartments = _departmentRepository.GetAll();
+
+            if (allDepartments == null) throw new DepartmentsNotAvailableException();
+
+            return allDepartments;
         }
     }
 }
