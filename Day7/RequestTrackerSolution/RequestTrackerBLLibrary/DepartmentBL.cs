@@ -66,7 +66,17 @@ namespace RequestTrackerBLLibrary
 
         public Department GetDepartmentByName(string departmentName)
         {
-            throw new NotImplementedException();
+            List<Department> allDepartments = _departmentRepository.GetAll();
+
+            Department department = null;
+
+            foreach (var currentDepartment in allDepartments)
+            {
+                if (currentDepartment.Name == departmentName) department = currentDepartment;
+            }
+
+            if (department == null) throw new DepartmentNotFoundException();
+            return department;
         }
 
         public int GetDepartmentHeadId(int departmentId)
