@@ -8,6 +8,9 @@ namespace RefundManagementApplication
 {
     internal class HR
     {
+        static EmployeeBL employeeService = new EmployeeBL();
+        static RefundRequestBL refundRequestService = new RefundRequestBL();
+
         static int GetNumberFromUserUntilItIsValid(string ErrorMessage)
         {
             int number;
@@ -204,15 +207,17 @@ namespace RefundManagementApplication
             return employee;
         }
 
-        static void DisplayAllEmployees (List<Employee> employees)
+        static void DisplayAllEmployees ()
         {
+            List<Employee> employees = employeeService.GetAllEmployee();
+
             foreach (var employee in employees)
             {
-                Console.WriteLine($"\nEmployee name: {employee.Name}");
+                Console.WriteLine($"Employee name: {employee.Name}");
             }
         }
 
-        static IEmployeeService HandleHROperations (IEmployeeService employeeService)
+        static void HandleHROperations ()
         {
             if (!AuthenticateHR())
             {
@@ -228,8 +233,7 @@ namespace RefundManagementApplication
 
                 int operation = GetNumberFromUserUntilItIsValid("Operation must be an integer");
 
-                if (operation == 0)
-                    return employeeService;
+                if (operation == 0) break;
 
                 switch (operation)
                 {
@@ -238,6 +242,7 @@ namespace RefundManagementApplication
                         {
                             Employee newEmployee = GetEmployeeDetailsAndCreateNewEmployee();
                             employeeService.CreateEmployeeAccount(newEmployee);
+                            Console.WriteLine(newEmployee.Id);
                             Console.WriteLine(newEmployee.Name);
                         }
                         catch (EmailAddressAlreadyInUseException eaaiu)
@@ -246,7 +251,7 @@ namespace RefundManagementApplication
                         }
                         break;
                     case 2:
-                        DisplayAllEmployees(employeeService.GetAllEmployee());
+                        DisplayAllEmployees();
                         break;
                     default:
                         Console.Write("Kindly choose a valid option! ");
@@ -264,11 +269,12 @@ namespace RefundManagementApplication
             double amount = GetDoubleNumberFromUserUntilItIsValid("Amount must be a number");
 
             RefundRequest refundRequest = new RefundRequest(requestType, amount, employee);
+            refundRequestService.RaiseRefundRequest(refundRequest);
 
             return refundRequest;
         }
 
-        static void HandleEmployeeOperations (IEmployeeService employeeService, IRefundRequestService refundRequestService)
+        static void HandleEmployeeOperations ()
         {
             Console.Write("\nEnter email address: ");
             string email = GetEmailAddressFromUserUntilItIsValid();
@@ -302,7 +308,7 @@ namespace RefundManagementApplication
             }
         }
 
-        static void PrintMenu (IEmployeeService employeeService, IRefundRequestService refundRequestService)
+        static void PrintMenu ()
         {
             while (true)
             {
@@ -321,7 +327,7 @@ namespace RefundManagementApplication
                     case 1:
                         try
                         {
-                            HandleHROperations(employeeService);
+                            HandleHROperations();
                         }
                         catch (HRAccessDeniedException hred)
                         {
@@ -332,7 +338,7 @@ namespace RefundManagementApplication
                     case 2:
                         try
                         {
-                            HandleEmployeeOperations(employeeService, refundRequestService);
+                            HandleEmployeeOperations();
                         }
                         catch (EmployeeNotFoundException enfe)
                         {
@@ -357,61 +363,13 @@ namespace RefundManagementApplication
 
         static void Main(string[] args)
         {
-
-            IEmployeeService employeeService = new EmployeeBL();
-            IRefundRequestService refundRequestService = new RefundRequestBL();
+            
+            //IEmployeeService employeeService = new EmployeeBL();
+            //IRefundRequestService refundRequestService = new RefundRequestBL();
 
             //PrintMenu(employeeService,refundRequestService);
 
-            while (true)
-            {
-                Console.WriteLine("\n****** Refund Management System ******\n");
-
-                Console.WriteLine("1. HR Manager");
-                Console.WriteLine("2. Employee");
-                Console.WriteLine("3. Exit Application\n");
-
-                Console.Write("Kindly select the user type: ");
-
-                int userType = GetNumberFromUserUntilItIsValid("Option must be an integer");
-
-                switch (userType)
-                {
-                    case 1:
-                        try
-                        {
-                            employeeService = HandleHROperations(employeeService);
-                        }
-                        catch (HRAccessDeniedException hred)
-                        {
-                            Console.WriteLine($"\n{hred.Message}");
-                        }
-
-                        break;
-                    case 2:
-                        try
-                        {
-                            HandleEmployeeOperations(employeeService, refundRequestService);
-                        }
-                        catch (EmployeeNotFoundException enfe)
-                        {
-                            Console.WriteLine($"\n{enfe.Message}");
-                        }
-                        catch (WrongEmployeeCredentialsException wece)
-                        {
-                            Console.WriteLine($"\n{wece.Message}");
-                        }
-
-                        break;
-                    case 3:
-                        Environment.Exit(0);
-                        break;
-                    default:
-                        Console.Write("Kindly choose a valid option! ");
-                        userType = GetNumberFromUserUntilItIsValid("Option must be an integer");
-                        break;
-                }
-            }
+            PrintMenu();
         }
     }
 }

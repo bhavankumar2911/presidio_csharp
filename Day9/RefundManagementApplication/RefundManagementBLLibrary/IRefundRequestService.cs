@@ -12,5 +12,7 @@ namespace RefundManagementBLLibrary
         RefundRequest RaiseRefundRequest(RefundRequest refundRequest);
 
         List<RefundRequest> GetAllRefundRequests ();
+
+        //RefundRequest UpdateRefundRequestStatus(RefundRequest oldRefundRequest, RequestStatus requestType);
     }
 }

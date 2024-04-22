@@ -25,5 +25,10 @@ namespace RefundManagementBLLibrary
         {
             return _refundRequestsRepository.GetAll();
         }
+
+        //public RefundRequest UpdateRefundRequestStatus(RefundRequest oldRefundRequest, RequestStatus requestType)
+        //{
+        //    oldRefundRequest.RequestStatus = requestType;
+        //}
     }
 }
