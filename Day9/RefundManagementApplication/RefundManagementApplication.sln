@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefundManagementApplication", "RefundManagementApplication\RefundManagementApplication.csproj", "{F842B139-7062-488F-9C4F-D1C923AEFC01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefundManagementModelLibrary", "RefundManagementModelLibrary\RefundManagementModelLibrary.csproj", "{9B117BD9-3A46-43D1-B422-E630B6F89CD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RefundManagementDALLibrary", "RefundManagementDALLibrary\RefundManagementDALLibrary.csproj", "{14A99532-9F92-404C-9521-67B6AAE496C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F842B139-7062-488F-9C4F-D1C923AEFC01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F842B139-7062-488F-9C4F-D1C923AEFC01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F842B139-7062-488F-9C4F-D1C923AEFC01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F842B139-7062-488F-9C4F-D1C923AEFC01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B117BD9-3A46-43D1-B422-E630B6F89CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B117BD9-3A46-43D1-B422-E630B6F89CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B117BD9-3A46-43D1-B422-E630B6F89CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B117BD9-3A46-43D1-B422-E630B6F89CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14A99532-9F92-404C-9521-67B6AAE496C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A99532-9F92-404C-9521-67B6AAE496C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A99532-9F92-404C-9521-67B6AAE496C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A99532-9F92-404C-9521-67B6AAE496C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7C0E057-E8F7-4470-B816-02B95C8B312B}
+	EndGlobalSection
+EndGlobal
