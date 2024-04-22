@@ -8,7 +8,7 @@ namespace RefundManagementDALLibrary
 {
     public interface IRepository<K, T> where T : class
     {
-        List<T>? GetAll();
+        List<T> GetAll();
         T? Get(K key);
         T? Add(T item);
         T? Update(T item);

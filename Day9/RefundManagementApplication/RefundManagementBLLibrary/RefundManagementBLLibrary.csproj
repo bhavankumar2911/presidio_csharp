@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RefundManagementDALLibrary\RefundManagementDALLibrary.csproj" />
+    <ProjectReference Include="..\RefundManagementModelLibrary\RefundManagementModelLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

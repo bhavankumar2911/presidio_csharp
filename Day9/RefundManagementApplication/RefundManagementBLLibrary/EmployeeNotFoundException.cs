@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RefundManagementBLLibrary
 {
-    public class EmailAddressAlreadyInUseException : Exception
+    public class EmployeeNotFoundException : Exception
     {
         string ErrorMessage;
-        public EmailAddressAlreadyInUseException()
+        public EmployeeNotFoundException()
         {
-            ErrorMessage = "The email address you've provided is already used by an another employee. Try something new!";
+            ErrorMessage = "No employee with this email address exist!";
         }
         public override string Message => ErrorMessage;
     }

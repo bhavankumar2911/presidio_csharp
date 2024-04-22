@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace RefundManagementBLLibrary
 {
-    public interface IEmployeeService
+    public interface IRefundRequestService
     {
-        Employee CreateEmployeeAccount(Employee employee);
+        RefundRequest RaiseRefundRequest(RefundRequest refundRequest);
 
-        List<Employee> GetAllEmployee();   
-
-        Employee LogInEmployee(string email, string password);
+        List<RefundRequest> GetAllRefundRequests ();
     }
 }

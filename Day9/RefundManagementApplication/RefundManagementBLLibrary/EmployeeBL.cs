@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RefundManagementBLLibrary
 {
-    internal class EmployeeBL : IEmployeeService
+    public class EmployeeBL : IEmployeeService
     {
         readonly IRepository<int, Employee> _employeeRepository;
 
@@ -27,11 +27,42 @@ namespace RefundManagementBLLibrary
                 {
                     if (employee.Email == newEmployee.Email) throw new EmailAddressAlreadyInUseException();
                 }
+
+                allEmployees.Add(newEmployee);
+                return newEmployee;
             }
 
             allEmployees.Add(newEmployee);
 
             return newEmployee;
+        }
+
+        public Employee LogInEmployee(string email, string password)
+        {
+            List<Employee> allEmployees = _employeeRepository.GetAll();
+            Employee employee = new Employee();
+            bool isEmployeePresent = false;
+
+            foreach (var currentEmployee in allEmployees)
+            {
+                if (currentEmployee.Email == email)
+                {
+                    isEmployeePresent = true;
+                    employee = currentEmployee;
+                    break;
+                }
+            }
+
+            if (!isEmployeePresent) throw new EmployeeNotFoundException();  
+
+            if (employee.Password != password) throw new WrongEmployeeCredentialsException();
+
+            return employee;
+        }
+
+        public List<Employee> GetAllEmployee ()
+        {
+            return _employeeRepository.GetAll();
         }
     }
 }

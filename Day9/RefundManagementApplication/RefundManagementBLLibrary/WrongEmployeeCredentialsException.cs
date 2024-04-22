@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace RefundManagementBLLibrary
 {
-    public class EmailAddressAlreadyInUseException : Exception
+    public class WrongEmployeeCredentialsException : Exception
     {
         string ErrorMessage;
-        public EmailAddressAlreadyInUseException()
+        public WrongEmployeeCredentialsException()
         {
-            ErrorMessage = "The email address you've provided is already used by an another employee. Try something new!";
+            ErrorMessage = "Credentials did not match!";
         }
         public override string Message => ErrorMessage;
     }

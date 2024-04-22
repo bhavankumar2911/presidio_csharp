@@ -16,6 +16,10 @@
         public string Email { get; set; }
         public string Password { get; set; }
 
+        public Employee()
+        {
+        }
+
         public Employee(string name, Gender gender, float age, string email, string password)
         {
             Name = name;

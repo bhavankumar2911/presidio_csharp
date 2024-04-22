@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RefundManagementBLLibrary\RefundManagementBLLibrary.csproj" />
+    <ProjectReference Include="..\RefundManagementModelLibrary\RefundManagementModelLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

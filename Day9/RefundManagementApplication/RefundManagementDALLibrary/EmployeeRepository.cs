@@ -63,8 +63,8 @@ namespace RefundManagementDALLibrary
 
         public List<Employee>? GetAll()
         {
-            if (_employees.Count == 0)
-                return null;
+            //if (_employees.Count == 0)
+            //    return null;
 
             return _employees.Values.ToList();
         }

@@ -28,13 +28,8 @@ namespace RefundManagementDALLibrary
             return ++id;
         }
 
-        public RefundRequest? Add(RefundRequest item)
+        public RefundRequest Add(RefundRequest item)
         {
-            if (_refundRequests.ContainsValue(item))
-            {
-                return null;
-            }
-
             int id = GenerateId();
             item.Id = id;
 
@@ -63,8 +58,8 @@ namespace RefundManagementDALLibrary
 
         public List<RefundRequest>? GetAll()
         {
-            if (_refundRequests.Count == 0)
-                return null;
+            //if (_refundRequests.Count == 0)
+            //    return null;
 
             return _refundRequests.Values.ToList();
         }
