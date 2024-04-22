@@ -47,10 +47,10 @@ namespace RefundManagementDALLibrary
         {
             if (_employees.ContainsKey(key))
             {
-                var doctor = _employees[key];
+                var employee = _employees[key];
 
                 _employees.Remove(key);
-                return doctor;
+                return employee;
             }
 
             return null;
