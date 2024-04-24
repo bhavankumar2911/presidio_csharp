@@ -16,19 +16,58 @@ namespace RefundManagementBLLibrary
         {
             _refundRequestsRepository = new RefundRequestRepository();
         }
-        public RefundRequest RaiseRefundRequest(RefundRequest refundRequest)
+        public void RaiseRefundRequest(RefundRequest refundRequest)
         {
-            return _refundRequestsRepository.Add(refundRequest);
+            _refundRequestsRepository.Add(refundRequest);
         }
 
         public List<RefundRequest> GetAllRefundRequests()
         {
+            List<RefundRequest> refundRequests = _refundRequestsRepository.GetAll();
+
+            if (refundRequests == null || refundRequests.Count == 0) throw new NoRefundRequestsException();
+
             return _refundRequestsRepository.GetAll();
         }
 
-        //public RefundRequest UpdateRefundRequestStatus(RefundRequest oldRefundRequest, RequestStatus requestType)
-        //{
-        //    oldRefundRequest.RequestStatus = requestType;
-        //}
+        public RefundRequest GetOneRefundRequestById(int requestId)
+        {
+            RefundRequest? refundRequest = _refundRequestsRepository.Get(requestId);
+
+            if (refundRequest == null) throw new RequestNotFoundException();
+
+            return refundRequest;
+        }
+
+        public void UpdateRefundRequestStatus(RefundRequest oldRefundRequest, RequestStatus requestStatus)
+        {
+            oldRefundRequest.RequestStatus = requestStatus;
+
+            RefundRequest? updatedRequest = _refundRequestsRepository.Update(oldRefundRequest);
+
+            if (updatedRequest == null)
+            {
+                throw new RequestNotFoundException();
+            }
+        }
+
+        public List<RefundRequest> GetAllRefundRequestsOfAUser(int employeeId)
+        {
+            List<RefundRequest> requestsOfTheUser = new List<RefundRequest>();
+            List<RefundRequest> allRequests
+                = _refundRequestsRepository.GetAll();
+
+            if (allRequests == null || allRequests.Count == 0) throw new NoRefundRequestsException();
+
+            foreach (var request in allRequests)
+            {
+                if (request.RaisedBy.Id == employeeId) requestsOfTheUser.Add(request);
+            }
+
+            if (requestsOfTheUser.Count == 0)
+                throw new NoRefundRequestsException();
+
+            return requestsOfTheUser;
+        }
     }
 }

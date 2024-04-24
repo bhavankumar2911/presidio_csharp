@@ -9,10 +9,14 @@ namespace RefundManagementBLLibrary
 {
     public interface IRefundRequestService
     {
-        RefundRequest RaiseRefundRequest(RefundRequest refundRequest);
+        void RaiseRefundRequest(RefundRequest refundRequest);
 
         List<RefundRequest> GetAllRefundRequests ();
 
-        //RefundRequest UpdateRefundRequestStatus(RefundRequest oldRefundRequest, RequestStatus requestType);
+        List<RefundRequest> GetAllRefundRequestsOfAUser (int employeeId);
+
+        RefundRequest GetOneRefundRequestById (int requestId);
+
+        void UpdateRefundRequestStatus(RefundRequest oldRefundRequest, RequestStatus requestType);
     }
 }

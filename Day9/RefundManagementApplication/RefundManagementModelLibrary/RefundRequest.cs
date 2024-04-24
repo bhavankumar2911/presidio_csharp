@@ -31,8 +31,9 @@ namespace RefundManagementModelLibrary
         public double Amount { get; set; }
         public Employee RaisedBy { get; set; }
         public string RejectionReason { get; set; }
+        public string Description { get; set; }
 
-        public RefundRequest(RequestType requestType, double amount, Employee raisedBy)
+        public RefundRequest(RequestType requestType, double amount, Employee raisedBy, string description)
         {
             RequestType = requestType;
             Date = DateTime.Today;
@@ -40,6 +41,10 @@ namespace RefundManagementModelLibrary
             RaisedBy = raisedBy;
             RequestStatus = RequestStatus.Waiting;
             RejectionReason = "";
+            Description = 
+            Description = description;
         }
+
+        
     }
 }

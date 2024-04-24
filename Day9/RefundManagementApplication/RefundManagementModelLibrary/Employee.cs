@@ -28,5 +28,20 @@
             Email = email;
             Password = password;
         }
+
+        public string GetGenderInString ()
+        {
+            switch (Gender)
+            {
+                case Gender.Male:
+                    return "Male";
+                case Gender.Female:
+                    return "Female";
+                case Gender.PreferNotToSay:
+                    return "Not disclosed";
+                default:
+                    return "NA";
+            }
+        }
     }
 }

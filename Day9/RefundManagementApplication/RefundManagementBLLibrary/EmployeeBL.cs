@@ -28,7 +28,8 @@ namespace RefundManagementBLLibrary
                     if (employee.Email == newEmployee.Email) throw new EmailAddressAlreadyInUseException();
                 }
 
-                allEmployees.Add(newEmployee);
+                //allEmployees.Add(newEmployee);
+                _employeeRepository.Add(newEmployee);
                 return newEmployee;
             }
 
