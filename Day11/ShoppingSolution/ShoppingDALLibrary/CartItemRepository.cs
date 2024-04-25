@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingDALLibrary
 {
-    internal class CartItemRepository : AbstractRepository<int, CartItem>
+    public class CartItemRepository : AbstractRepository<int, CartItem>
     {
         public override CartItem Delete(int key)
         {
@@ -27,7 +27,7 @@ namespace ShoppingDALLibrary
                 if (items[i].Id == key)
                     return items[i];
             }
-            throw new ProductNotFoundException(key);
+            throw new CartItemNotFoundException(key);
         }
 
         public override CartItem Add(CartItem newCartItem)
