@@ -10,25 +10,29 @@ using System.Threading.Tasks;
 
 namespace ShoppingBLLibrary
 {
-    public class CartItemBL : ICartItemService
+    public enum QuantityUpdateType
+    {
+        Increase,
+        Decrease
+    }
+
+    public class CartItemBL
     {
         readonly IRepository<int, CartItem> _cartItemRepository;
         readonly IRepository<int, Cart> _cartRepository;
         readonly IRepository<int, Product> _productRepository;
-        readonly IRepository<int, Customer> _customerRepository;
 
-        public CartItemBL(IRepository<int, CartItem> cartItemRepository, IRepository<int, Cart> cartRepository, IRepository<int, Product> productRepository, IRepository<int, Customer> customerRepository)
+        public CartItemBL(IRepository<int, CartItem> cartItemRepository, IRepository<int, Cart> cartRepository, IRepository<int, Product> productRepository)
         {
             _cartItemRepository = cartItemRepository;
             _cartRepository = cartRepository;
             _productRepository = productRepository;
-            _customerRepository = customerRepository;
         }
 
         private int GenerateId ()
         {
             int maxId = Int32.MinValue;
-            List<Cart> cart = (List<Cart>)_cartRepository.GetAll();
+            List<Cart> cart = (List<Cart>)_cartItemRepository.GetAll();
 
             foreach (var cartItem in cart)
             {
@@ -40,47 +44,45 @@ namespace ShoppingBLLibrary
 
         public CartItem CreateCartItem(Product product, int cartId)
         {
-            CartItem cartItem;
-            try
-            {
-                // check product is available - throws exception
-                Product availableProduct = _productRepository.GetByKey(product.Id);
-
-                // check product quantity
-                if (availableProduct.QuantityInHand < 1)
-                {
-                    throw new ProductOutOfStockException(availableProduct.Name);
-                }
-
-                // checking cart - throws exception
-                Cart cart = _cartRepository.GetByKey(cartId);
-
-                // update product quantity
-                availableProduct.QuantityInHand--;
-                _productRepository.Update(availableProduct);
-
-                // create cart item
-                cartItem = new CartItem(GenerateId(), availableProduct, cartId);
-                
-                return cartItem;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            CartItem cartItem = new CartItem(GenerateId(), product, cartId);
+            return cartItem;
         }
 
-        //public CartItem UpdateCartItemCount(int cartItemId, CartItemUpdateType cartItemUpdateType)
-        //{
-        //    CartItem cartItem = _cartItemRepository.GetByKey(cartItemId);
+        public CartItem UpdateCartItemQuantity (int cartId, int cartItemId, QuantityUpdateType quantityUpdateType)
+        {
+            Cart cart = _cartRepository.GetByKey(cartId);
 
-        //    if (cartItem != null)
-        //    {
-        //        if (cartItemUpdateType == CartItemUpdateType.Increase)
-        //        {
+            CartItem cartItem = _cartItemRepository.GetByKey(cartItemId);
+            Product product = _productRepository.GetByKey(cartItem.ProductId);
+            CartItem cartItemToBeUpdated = cart.CartItems.Find(currentCartItem => currentCartItem.Id == cartItemId);
 
-        //        }
-        //    }
-        //}
+            if (quantityUpdateType == QuantityUpdateType.Increase)
+            {
+                if (cartItem.Quantity == 5) throw new MaxProductLimitException();
+
+                cartItem.Quantity++;
+                cartItemToBeUpdated.Quantity++;
+                product.QuantityInHand--;
+
+                
+            } else
+            {
+                if (cartItem.Quantity == 1)
+                {
+                    _cartItemRepository.Delete(cartItem.Id);
+                    cart.CartItems.Remove(cartItem);
+                }
+
+                cartItem.Quantity--;
+                cartItemToBeUpdated.Quantity--;
+                product.QuantityInHand++;
+            }
+
+            _cartItemRepository.Update(cartItem);
+            _productRepository.Update(product);
+            _cartRepository.Update(cart);
+
+            return cartItem;
+        }
     }
 }
