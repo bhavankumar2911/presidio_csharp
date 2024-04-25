@@ -4,7 +4,7 @@ using ShoppingModelLibrary.Exceptions;
 
 namespace ShoppingDALTest
 {
-    public class Tests
+    public class ProductRepositoryTest
     {
         IRepository<int, Product> _productRepository;
 
@@ -80,6 +80,29 @@ namespace ShoppingDALTest
         public void DeleteProductExceptionTest()
         {
             var exception = Assert.Throws<ProductNotFoundException>(() => _productRepository.Delete(5));
+
+            Assert.AreEqual("No product is found with this id: 5", exception.Message);
+        }
+
+        [Test]
+        public void ProductUpdatePassTest()
+        {
+            Product productWithChanges = new Product(1, 100000, "Laptop (updated)", 13);
+            _productRepository.Update(productWithChanges);
+
+            Product updatedProduct = _productRepository.GetByKey(1);
+
+            Assert.AreEqual("Laptop (updated)", updatedProduct.Name);
+        }
+
+        [Test]
+        public void ProductUpdateExceptionTest()
+        {
+            Product productWithChanges = new Product(5, 100000, "Laptop (updated)", 13);
+
+            //Product updatedProduct = _productRepository.GetByKey(1);
+
+            var exception = Assert.Throws<ProductNotFoundException>(() => _productRepository.Update(productWithChanges));
 
             Assert.AreEqual("No product is found with this id: 5", exception.Message);
         }

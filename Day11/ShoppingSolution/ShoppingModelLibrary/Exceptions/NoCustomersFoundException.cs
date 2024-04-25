@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ShoppingModelLibrary.Exceptions
 {
-    public class NoCustomerWithGiveIdException : Exception
+    public class NoCustomersFoundException : Exception
     {
         string message;
-        public NoCustomerWithGiveIdException()
+        public NoCustomersFoundException()
         {
-            message = "Customer with the given Id is not present";
+            message = "No customers are available";
         }
         public override string Message => message;
     }

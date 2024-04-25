@@ -55,12 +55,17 @@ namespace ShoppingDALLibrary
 
         public override Product Update(Product item)
         {
-            Product product = GetByKey(item.Id);
-            if (product != null)
-            {
-                product = item;
-            }
-            return product;
+            Product productToBeUpdated = items.Find(product => product.Id == item.Id);
+
+            if (productToBeUpdated == null) throw new ProductNotFoundException(item.Id);
+
+            productToBeUpdated.Id = item.Id;
+            productToBeUpdated.Name = item.Name;
+            productToBeUpdated.Price = item.Price;
+            productToBeUpdated.Image = item.Image;
+            productToBeUpdated.QuantityInHand = item.QuantityInHand;
+
+            return productToBeUpdated;
         }
     }
 }

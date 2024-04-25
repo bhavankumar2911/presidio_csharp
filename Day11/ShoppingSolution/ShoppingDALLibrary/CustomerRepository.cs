@@ -10,6 +10,26 @@ namespace ShoppingDALLibrary
 {
     public class CustomerRepository : AbstractRepository<int, Customer>
     {
+        public override Customer Add(Customer newCustomer)
+        {
+            bool customerExists = false;
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Id == newCustomer.Id) throw new CustomerDuplicationException(newCustomer.Id);
+            }
+
+            items.Add(newCustomer);
+            return newCustomer;
+        }
+
+        public override List<Customer> GetAll()
+        {
+            if (items.Count == 0) throw new NoCustomersFoundException();
+
+            return items;
+        }
+
         public override Customer Delete(int key)
         {
             Customer customer = GetByKey(key);
@@ -27,7 +47,7 @@ namespace ShoppingDALLibrary
                 if (items[i].Id == key)
                     return items[i];
             }
-            throw new NoCustomerWithGiveIdException();
+            throw new CustomerNotFoundException(key);
         }
 
         public override Customer Update(Customer item)
