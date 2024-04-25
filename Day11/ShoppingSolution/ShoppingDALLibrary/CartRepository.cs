@@ -30,14 +30,39 @@ namespace ShoppingDALLibrary
             throw new ProductNotFoundException(key);
         }
 
+        public override Cart Add(Cart newCart)
+        {
+            bool cartExist = false;
+
+            for (int i = 0; i < items.Count; i++)
+            {
+                if (items[i].Id == newCart.Id) throw new CartDuplicationException(newCart.Id);
+            }
+
+            items.Add(newCart);
+            return newCart;
+        }
+
+        public override List<Cart> GetAll()
+        {
+            if (items.Count == 0) throw new NoCartsFoundException();
+
+            return items;
+        }
+
         public override Cart Update(Cart item)
         {
-            Cart cart = GetByKey(item.Id);
-            if (cart != null)
-            {
-                cart = item;
-            }
-            return cart;
+            Cart cartToBeUpdated = items.Find(cart => cart.Id == item.Id);
+
+            if (cartToBeUpdated == null) throw new CartNotFoundException(item.Id);
+
+            cartToBeUpdated.Id = item.Id;
+            cartToBeUpdated.CustomerId = item.CustomerId;
+            cartToBeUpdated.Customer = item.Customer;
+            cartToBeUpdated.CartItems = item.CartItems;
+
+            return cartToBeUpdated;
         }
+
     }
 }
