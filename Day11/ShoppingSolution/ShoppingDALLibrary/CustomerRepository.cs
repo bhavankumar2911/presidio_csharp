@@ -52,12 +52,17 @@ namespace ShoppingDALLibrary
 
         public override Customer Update(Customer item)
         {
-            Customer customer = GetByKey(item.Id);
-            if (customer != null)
-            {
-                customer = item;
-            }
-            return customer;
+            Customer customerToBeUpdated = items.Find(customer => customer.Id == item.Id);
+
+            if (customerToBeUpdated == null) throw new CustomerNotFoundException(item.Id);
+
+            customerToBeUpdated.Id = item.Id;
+            customerToBeUpdated.Name = item.Name;
+            customerToBeUpdated.Age = item.Age;
+            customerToBeUpdated.Phone = item.Phone;
+
+            return customerToBeUpdated;
         }
+
     }
 }

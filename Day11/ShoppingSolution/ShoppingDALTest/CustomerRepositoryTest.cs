@@ -83,5 +83,27 @@ namespace ShoppingDALTest
 
             Assert.AreEqual("No customer is found with this id: 5", exception.Message);
         }
+
+        [Test]
+        public void CustomerUpdatePassTest()
+        {
+            Customer customerWithChanges = new Customer(1, "+91 9090909090", "bhavan kumar", 21);
+            _customerRepository.Update(customerWithChanges);
+
+            Customer updatedCustomer = _customerRepository.GetByKey(1);
+
+            Assert.AreEqual("bhavan kumar", updatedCustomer.Name);
+        }
+
+        [Test]
+        public void CustomerUpdateExceptionTest()
+        {
+            Customer customerWithChanges = new Customer(5, "+91 9090909090", "bhavan kumar", 21);
+
+            var exception = Assert.Throws<CustomerNotFoundException>(() => _customerRepository.Update(customerWithChanges));
+
+            Assert.AreEqual("No customer is found with this id: 5", exception.Message);
+        }
+
     }
 }

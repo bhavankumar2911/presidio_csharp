@@ -100,8 +100,6 @@ namespace ShoppingDALTest
         {
             Product productWithChanges = new Product(5, 100000, "Laptop (updated)", 13);
 
-            //Product updatedProduct = _productRepository.GetByKey(1);
-
             var exception = Assert.Throws<ProductNotFoundException>(() => _productRepository.Update(productWithChanges));
 
             Assert.AreEqual("No product is found with this id: 5", exception.Message);
