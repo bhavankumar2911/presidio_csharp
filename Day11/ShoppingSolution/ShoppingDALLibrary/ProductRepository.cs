@@ -23,13 +23,22 @@ namespace ShoppingDALLibrary
             return newProduct;
         }
 
+        public override List<Product> GetAll ()
+        {
+            if ( items.Count == 0 ) throw new NoProductsFoundException();
+
+            return items;
+        }
+
         public override Product Delete(int key)
         {
             Product product = GetByKey(key);
+
             if (product != null)
             {
                 items.Remove(product);
             }
+
             return product;
         }
 

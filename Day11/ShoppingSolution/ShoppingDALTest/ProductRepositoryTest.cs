@@ -52,7 +52,36 @@ namespace ShoppingDALTest
         [Test]
         public void GetAllProductsPassTest()
         {
+            List<Product> products = (List<Product>)_productRepository.GetAll();
+            Assert.AreEqual(1, products.Count);
+        }
 
+        [Test]
+        public void GetAllProductsExceptionTest()
+        {
+            IRepository<int, Product> _productRepository = new ProductRepository();
+
+            var exception = Assert.Throws<NoProductsFoundException>(() => _productRepository.GetAll());
+
+            Assert.AreEqual("No products are available", exception.Message);
+        }
+
+        [Test]
+        public void DeleteProductPassTest()
+        {
+            Product newProduct = new Product(2, 20000, "Mobile", 13);
+            _productRepository.Add(newProduct);
+            Product deletedProduct = _productRepository.Delete(1);
+
+            Assert.AreEqual(1, _productRepository.GetAll().Count);
+        }
+
+        [Test]
+        public void DeleteProductExceptionTest()
+        {
+            var exception = Assert.Throws<ProductNotFoundException>(() => _productRepository.Delete(5));
+
+            Assert.AreEqual("No product is found with this id: 5", exception.Message);
         }
     }
 }
