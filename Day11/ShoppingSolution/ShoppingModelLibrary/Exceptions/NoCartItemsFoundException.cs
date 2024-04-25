@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ShoppingModelLibrary.Exceptions
 {
-    public class CartItemNotFoundException : Exception
+    public class NoCartItemsFoundException : Exception
     {
         string message;
-        public CartItemNotFoundException(int cartId)
+        public NoCartItemsFoundException()
         {
-            message = $"No cart item is found with this id: {cartId}";
+            message = "No cart items are available";
         }
         public override string Message => message;
     }
