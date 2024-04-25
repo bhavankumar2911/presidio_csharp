@@ -13,5 +13,11 @@ namespace ShoppingModelLibrary
         public Customer Customer { get; set; }//Navigation property
 
         public List<CartItem> CartItems { get; set; }//Navigation property.
+
+        public Cart(int id, int customerId)
+        {
+            Id = id;
+            CustomerId = customerId;
+        }
     }
 }

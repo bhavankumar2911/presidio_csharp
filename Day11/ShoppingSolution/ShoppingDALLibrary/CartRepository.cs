@@ -27,7 +27,7 @@ namespace ShoppingDALLibrary
                 if (items[i].Id == key)
                     return items[i];
             }
-            throw new ProductNotFoundException(key);
+            throw new CartNotFoundException(key);
         }
 
         public override Cart Add(Cart newCart)
