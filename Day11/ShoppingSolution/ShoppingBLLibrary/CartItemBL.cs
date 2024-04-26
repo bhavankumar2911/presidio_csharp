@@ -84,5 +84,24 @@ namespace ShoppingBLLibrary
 
             return cartItem;
         }
+
+        public CartItem DeleteCartItem (int cartItemId)
+        {
+            CartItem cartItem = _cartItemRepository.Delete(cartItemId); 
+
+            Cart cart = _cartRepository.GetByKey(cartItem.CartId);
+
+            cart.CartItems.Remove(cartItem);
+
+            _cartRepository.Update(cart);
+
+            Product product = _productRepository.GetByKey(cartItem.ProductId);
+
+            product.QuantityInHand += cartItem.Quantity;
+
+            _productRepository.Update(product);
+
+            return cartItem ;
+        }
     }
 }
