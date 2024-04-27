@@ -29,17 +29,24 @@ namespace ShoppingBLLibrary
             _productRepository = productRepository;
         }
 
-        private int GenerateId ()
+        public int GenerateId ()
         {
-            int maxId = Int32.MinValue;
-            List<Cart> cart = (List<Cart>)_cartItemRepository.GetAll();
-
-            foreach (var cartItem in cart)
+            try
             {
-                maxId = Math.Max(maxId, cartItem.Id);
-            }
+                int maxId = Int32.MinValue;
+                List<CartItem> cart = (List<CartItem>)_cartItemRepository.GetAll();
 
-            return ++maxId;
+                foreach (var cartItem in cart)
+                {
+                    maxId = Math.Max(maxId, cartItem.Id);
+                }
+
+                return ++maxId;
+            }
+            catch (NoCartItemsFoundException)
+            {
+                return 1;
+            }
         }
 
         public CartItem CreateCartItem(Product product, int cartId)

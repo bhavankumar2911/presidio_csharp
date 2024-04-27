@@ -7,13 +7,25 @@ namespace ShoppingDALTest
     public class CartItemRepositoryTest
     {
         IRepository<int, CartItem> _cartItemRepository;
+        IRepository<int, Cart> _cartRepository;
+        IRepository<int, Customer> _customerRepository;
+        Cart cart;
 
         [SetUp]
         public void Setup()
         {
             _cartItemRepository = new CartItemRepository();
             Product product = new Product(1, 100000, "Laptop", 13);
-            CartItem newCartItem = new CartItem(1, product);
+
+            _customerRepository = new CustomerRepository();
+            Customer customer = new Customer(1, "+91 9090909090", "bhavan", 21);
+            _customerRepository.Add(customer);
+
+            _cartRepository = new CartRepository();
+            cart = new Cart(1, customer.Id);
+            _cartRepository.Add(cart);
+
+            CartItem newCartItem = new CartItem(1, product, cart.Id);
             _cartItemRepository.Add(newCartItem);
         }
 
@@ -21,7 +33,7 @@ namespace ShoppingDALTest
         public void AddCartItemPassTest()
         {
             Product product = new Product(2, 20000, "Mobile", 45);
-            CartItem newCartItem = new CartItem(2, product);
+            CartItem newCartItem = new CartItem(2, product, cart.Id);
             _cartItemRepository.Add(newCartItem);
             List<CartItem> cartItems = (List<CartItem>)_cartItemRepository.GetAll();
             Assert.AreEqual(2, cartItems.Count);
@@ -31,7 +43,7 @@ namespace ShoppingDALTest
         public void AddCartItemExceptionTest()
         {
             Product product = new Product(1, 100000, "Laptop", 13);
-            CartItem newCartItem = new CartItem(1, product);
+            CartItem newCartItem = new CartItem(1, product, cart.Id);
             var exception = Assert.Throws<CartItemDuplicationException>(() => _cartItemRepository.Add(newCartItem));
 
             Assert.AreEqual($"Cart item with this id {newCartItem.Id} already exists", exception.Message);
@@ -73,7 +85,7 @@ namespace ShoppingDALTest
         public void DeleteCartItemPassTest()
         {
             Product product = new Product(2, 20000, "Mobile", 45);
-            CartItem newCartItem = new CartItem(2, product);
+            CartItem newCartItem = new CartItem(2, product, cart.Id);
             _cartItemRepository.Add(newCartItem);
             CartItem deletedCartItem = _cartItemRepository.Delete(1);
 
@@ -92,7 +104,7 @@ namespace ShoppingDALTest
         public void CartItemUpdatePassTest()
         {
             Product product = new Product(1, 100000, "Laptop", 13);
-            CartItem cartItemWithChanges = new CartItem(1, product);
+            CartItem cartItemWithChanges = new CartItem(1, product, cart.Id);
             cartItemWithChanges.Quantity++;
             _cartItemRepository.Update(cartItemWithChanges);
 
@@ -105,7 +117,7 @@ namespace ShoppingDALTest
         public void CartItemUpdateExceptionTest()
         {
             Product product = new Product(1, 100000, "Laptop", 13);
-            CartItem cartItemWithChanges = new CartItem(5, product);
+            CartItem cartItemWithChanges = new CartItem(5, product, cart.Id);
 
             var exception = Assert.Throws<CartItemNotFoundException>(() => _cartItemRepository.Update(cartItemWithChanges));
 

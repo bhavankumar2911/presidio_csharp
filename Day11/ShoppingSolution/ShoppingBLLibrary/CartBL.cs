@@ -26,17 +26,24 @@ namespace ShoppingBLLibrary
             cartItemService = new CartItemBL(cartItemRepository, cartRepository, productRepository);
         }
 
-        private int GenerateId()
+        public int GenerateId()
         {
-            int maxId = Int32.MinValue;
-            List<Cart> carts = (List<Cart>)_cartRepository.GetAll();
-
-            foreach (var cart in carts)
+            try
             {
-                maxId = Math.Max(maxId, cart.Id);
-            }
+                int maxId = Int32.MinValue;
+                List<Cart> carts = (List<Cart>)_cartRepository.GetAll();
 
-            return ++maxId;
+                foreach (var cart in carts)
+                {
+                    maxId = Math.Max(maxId, cart.Id);
+                }
+
+                return ++maxId;
+            }
+            catch (NoCartsFoundException)
+            {
+                return 1;
+            }
         }
 
         public Cart AddCartItemToCart(int productId, int cartId)
