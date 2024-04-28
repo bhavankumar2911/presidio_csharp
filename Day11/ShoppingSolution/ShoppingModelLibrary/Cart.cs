@@ -18,6 +18,7 @@ namespace ShoppingModelLibrary
         {
             Id = id;
             CustomerId = customerId;
+            CartItems = new List<CartItem>();
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ShoppingBLLibrary;
 using ShoppingDALLibrary;
 using ShoppingModelLibrary;
+using ShoppingModelLibrary.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,8 +33,8 @@ namespace ShoppingBLTest
             _customerRepository.Add(customer);
 
             _cartRepository = new CartRepository();
-            //cart = new Cart(1, customer.Id);
-            //_cartRepository.Add(cart);
+            cart = new Cart(1, customer.Id);
+            _cartRepository.Add(cart);
 
             _cartItemRepository = new CartItemRepository();
 
@@ -57,6 +58,30 @@ namespace ShoppingBLTest
             int newCartId = cartService.GenerateId();
 
             Assert.AreEqual(2, newCartId);
+        }
+
+        [Test]
+        public void AddItemToCartNotFoundException()
+        {
+            Exception exception = Assert.Throws<CartNotFoundException>(() => cartService.AddCartItemToCart(1, 5));
+
+            Assert.AreEqual("No cart is found with this id: 5", exception.Message);
+        }
+
+        [Test]
+        public void AddItemToCartPassTest()
+        {
+            Cart cart = cartService.AddCartItemToCart(1, 1);
+
+            Assert.AreEqual(1, cart.CartItems.Count);
+        }
+
+        [Test]
+        public void CalculateTotalCartAmountTest()
+        {
+            cartService.AddCartItemToCart(1, 1);
+            CartItem cartItem = _cartItemRepository.GetByKey(1);
+
         }
     }
 }

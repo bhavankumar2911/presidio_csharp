@@ -70,18 +70,17 @@ namespace ShoppingBLLibrary
                 cartItem.Quantity++;
                 cartItemToBeUpdated.Quantity++;
                 product.QuantityInHand--;
-
-                
             } else
             {
                 if (cartItem.Quantity == 1)
                 {
                     _cartItemRepository.Delete(cartItem.Id);
                     cart.CartItems.Remove(cartItem);
+                } else
+                {
+                    cartItem.Quantity--;
+                    cartItemToBeUpdated.Quantity--;
                 }
-
-                cartItem.Quantity--;
-                cartItemToBeUpdated.Quantity--;
                 product.QuantityInHand++;
             }
 
