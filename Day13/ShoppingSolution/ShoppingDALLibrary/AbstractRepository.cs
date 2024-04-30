@@ -22,5 +22,6 @@ namespace ShoppingDALLibrary
         public abstract Task<T> GetByKey(K key);
 
         public abstract Task<T> Update(T item);
+
     }
 }
