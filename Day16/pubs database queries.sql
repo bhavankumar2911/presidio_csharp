@@ -40,7 +40,6 @@ select top 2 * from titles order by price desc
 -- 12) Print books that are of type business and have price less than 20 which also have advance greater than 7000
 select * from titles where type = 'business' and price < 20 and advance > 7000
 
-
 -- select * from titles where title like '%It%' and price between 15 and 26
 
 -- 14) Print the Authors who are from 'CA'
