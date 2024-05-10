@@ -1,28 +1,30 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using RequestTrackerBLLibrary;
+﻿using RequestTrackerBLLibrary.Exceptions;
+using RequestTrackerDALLibrary;
 using RequestTrackerModelLibrary;
 
-namespace RequestTrackerDALLibrary
+namespace RequestTrackerBLLibrary
 {
     public class EmployeeLoginBL : IEmployeeLoginBL
     {
         private readonly IRepository<int, Employee> _repository;
+
         public EmployeeLoginBL()
         {
-            IRepository<int, Employee> repo = new EmployeeRepository(new RequestTrackerContext());
+            IRepository<int, Employee> repo = new EmployeeRequestRepository(new RequestTrackerContext());
             _repository = repo;
         }
 
-        public async Task<bool> Login(Employee employee)
+        public async Task<Employee> Login(Employee employee)
         {
-            var emp = await _repository.Get(employee.Id);
+           
+           var emp = await _repository.Get(employee.Id);
             if (emp != null)
             {
                 if (emp.Password == employee.Password)
-                    return true;
+                    return emp;
             }
-            return false;
+
+            throw new EmployeeNotFoundException(employee.Id);
         }
 
         public async Task<Employee> Register(Employee employee)
