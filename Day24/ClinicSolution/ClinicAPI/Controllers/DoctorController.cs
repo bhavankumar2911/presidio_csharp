@@ -31,5 +31,34 @@ namespace ClinicAPI.Controllers
                 return NotFound(ndae.Message);
             }
         }
+
+        [HttpGet]
+        [Route("speciality")]
+        public async Task<ActionResult<IList<Doctor>>> Get(string speciality)
+        {
+            try
+            {
+                var doctorsOfASpeciality = await _doctorService.GetAllDoctorsOfASpeciality(speciality);
+
+                return Ok(doctorsOfASpeciality);    
+            } catch (NoDoctorsAvailableException ndae)
+            {
+                return NotFound(ndae.Message);
+            }
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Doctor>> UpdateExperience (int doctorID, double newExperience)
+        {
+            try
+            {
+                var updatedDoctor = await _doctorService.UpdateExperienceOfADoctor(doctorID, newExperience);
+
+                return Ok(updatedDoctor);   
+            } catch (DoctorNotFoundException dnfe)
+            {
+                return NotFound(dnfe.Message);
+            }
+        }
     }
 }
