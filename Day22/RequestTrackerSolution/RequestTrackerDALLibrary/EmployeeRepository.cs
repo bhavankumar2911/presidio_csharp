@@ -8,7 +8,7 @@ namespace RequestTrackerDALLibrary
     {
         protected readonly RequestTrackerContext _context;
 
-        public EmployeeRepository(RequestTrackerContext context) 
+        public EmployeeRepository(RequestTrackerContext context)
         {
             _context = context;
         }
