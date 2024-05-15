@@ -34,6 +34,7 @@ namespace PizzaAPI
 
             #region services
             builder.Services.AddScoped<IPizzaService, PizzaService>();
+            builder.Services.AddScoped<IUserService, UserService>();
             #endregion
 
             var app = builder.Build();

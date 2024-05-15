@@ -40,9 +40,7 @@ namespace PizzaAPI.Repositories
         {
             var users = await _context.Users.ToListAsync();
 
-            if (users.Count > 0) return users;
-
-            throw new Exception("No users are available");
+            return users;
         }
 
         public Task<User> GetByKey(int key)

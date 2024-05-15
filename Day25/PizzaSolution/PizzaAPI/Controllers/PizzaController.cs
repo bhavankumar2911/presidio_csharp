@@ -20,7 +20,7 @@ namespace PizzaAPI.Controllers
         [HttpGet]
         [ProducesResponseType(typeof(IList<Pizza>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status204NoContent)]
-        public async Task<ActionResult<IList<Pizza>>> Index()
+        public async Task<ActionResult<IList<Pizza>>> GetAllPizzas()
         {
             try
             {
