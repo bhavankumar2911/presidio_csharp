@@ -3,6 +3,8 @@ using PizzaAPI.Context;
 using PizzaAPI.Models;
 using PizzaAPI.Repositories;
 using PizzaAPI.Repositories.Interfaces;
+using PizzaAPI.Services;
+using PizzaAPI.Services.Interfaces;
 
 namespace PizzaAPI
 {
@@ -28,6 +30,10 @@ namespace PizzaAPI
             #region repositories
             builder.Services.AddScoped<IRepository<int, User>, UserRepository>();
             builder.Services.AddScoped<IRepository<int, Pizza>, PizzaRepository>();
+            #endregion
+
+            #region services
+            builder.Services.AddScoped<IPizzaService, PizzaService>();
             #endregion
 
             var app = builder.Build();
