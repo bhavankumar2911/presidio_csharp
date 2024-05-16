@@ -43,9 +43,9 @@ namespace PizzaAPI.Repositories
             return users;
         }
 
-        public Task<User> GetByKey(int key)
+        public async Task<User> GetByKey(int key)
         {
-            var user = _context.Users.FirstOrDefaultAsync(e => e.Id == key);
+            var user = await _context.Users.FirstOrDefaultAsync(e => e.Id == key);
 
             if (user != null) return user;
 

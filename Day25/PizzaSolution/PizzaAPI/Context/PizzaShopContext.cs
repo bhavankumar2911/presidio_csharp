@@ -14,6 +14,7 @@ namespace PizzaAPI.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pizza>().HasKey(p => p.Id);
+            modelBuilder.Entity<User>().HasKey(u => u.Id);
 
             modelBuilder.Entity<Pizza>().HasData(
                 new Pizza() { Id = 1, Name = "Italian Pizza", BasePrice = 99, Size = Size.Small, Stock = 120},

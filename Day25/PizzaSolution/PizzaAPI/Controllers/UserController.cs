@@ -17,7 +17,7 @@ namespace PizzaAPI.Controllers
             _userService = userService;
         }
 
-        [HttpPost]
+        [HttpPost("/Register")]
         [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status409Conflict)]
         public async Task<ActionResult<UserDTO>> Register (RegisterUserDTO registerUserDTO)
@@ -32,5 +32,23 @@ namespace PizzaAPI.Controllers
                 return Conflict(new ErrorResponse(409, ex.Message));
             }
         }
+
+        [HttpPost("/Login")]
+        [ProducesResponseType(typeof(UserDTO), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ErrorResponse), StatusCodes.Status401Unauthorized)]
+        public async Task<ActionResult<UserDTO>> Login(LoginUserDTO loginUserDTO)
+        {
+            try
+            {
+                UserDTO userDTO = await _userService.LoginUser(loginUserDTO);
+
+                return Ok(userDTO);
+            } catch (Exception ex)
+            {
+                return Unauthorized(new ErrorResponse(401, ex.Message));
+            }
+        }
+
     }
 }

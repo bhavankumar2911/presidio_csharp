@@ -17,9 +17,59 @@ namespace PizzaAPI.Services
             _repository = repository;
         }
 
-        public Task<UserDTO> LoginUser(int userId, string password)
+        private bool ComparePassword(byte[] passwordFromUser, byte[] passwordInDB)
         {
-            throw new NotImplementedException();
+            if (passwordFromUser.Length != passwordInDB.Length) return false;
+
+            for (int i = 0; i < passwordFromUser.Length; i++)
+            {
+                if (passwordFromUser[i] != passwordInDB[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private UserDTO ConvertUserToUserDTO (User user)
+        {
+            UserDTO userDTO = new UserDTO()
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                Phone = user.Phone,
+                Address = user.Address,
+            };
+
+            return userDTO;
+        }
+
+        public async Task<UserDTO> LoginUser(LoginUserDTO loginUserDTO)
+        {
+            try
+            {
+                User user = await _repository.GetByKey(loginUserDTO.Id);
+
+                // check password
+                HMACSHA512 hMACSHA512 = new HMACSHA512(user.PasswordHashKey);
+                byte[] hashedPassword = hMACSHA512.ComputeHash(Encoding.UTF8.GetBytes(loginUserDTO.PlainTextPassword));
+
+                if (ComparePassword(hashedPassword, user.HashedPassword))
+                {
+                    return ConvertUserToUserDTO(user);
+                }
+
+                throw new Exception("Invalid credentials");
+            } catch (Exception ex)
+            {
+                if (ex.Message == $"User with id - {loginUserDTO.Id} not found")
+                {
+                    throw new Exception("Invalid credentials");
+                }
+
+                throw;
+            }
         }
 
         private byte[] GetHashKey (HMACSHA512 hMACSHA)

@@ -5,7 +5,7 @@ namespace PizzaAPI.Services.Interfaces
 {
     public interface IUserService
     {
-        public Task<UserDTO> LoginUser(int userId, string password);
+        public Task<UserDTO> LoginUser(LoginUserDTO loginUserDTO);
 
         public Task<UserDTO> RegisterUser(RegisterUserDTO registerUserDTO);
     }
