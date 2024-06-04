@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap");
+
+:root {
+  --primary-color: rgb(0, 140, 255);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+h2 {
+  color: var(--primary-color);
+}
+
+section {
+  margin-top: 2rem;
+}
+
+main {
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 3rem;
+}
+
+#photo {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+}
+
+#intro {
+  padding-left: 3rem;
+}
+
+#intro h1 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 3rem;
+}
+
+.social-btn {
+  background-color: var(--primary-color);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.5rem 1rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+#social {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 0;
+}
+
+#social table {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#social tr {
+  text-align: center;
+}
+
+.project {
+  background-color: #f3f3f3;
+  border-radius: 5px;
+  overflow: hidden;
+  display: block;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--primary-color);
+}
+
+.project-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.project-info {
+  padding-left: 2rem;
+  vertical-align: top;
+}
+
+.project-info h3 {
+  font-size: 1.5rem;
+}
+
+.project-info p {
+  margin-top: 0.5rem;
+}
+
+.project-info a {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  margin-top: 0.5rem;
+}
+
+#projects {
+  padding-bottom: 2rem;
+}
