@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap");
+
+* {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-top: 2rem;
+}
+
+h1 span {
+  font-weight: 800;
+}
+
+h1 span span {
+  color: #2f80ed;
+}
+
+ul {
+  margin-top: 2.5rem;
+}
+
+ul li {
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.phone {
+  position: relative;
+  height: 520px;
+  width: 270px;
+}
+
+img {
+  width: 230px;
+  position: absolute;
+}
+
+.inbox {
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.mail {
+  top: 0;
+  right: 0;
+  z-index: 5;
+}
+
+.right {
+  display: flex;
+  margin-top: 6rem;
+}
+
+.triangle {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(
+    to bottom right,
+    #fff 0%,
+    #fff 50%,
+    #2f80ed 50%,
+    #2f80ed 100%
+  );
+  position: absolute;
+  z-index: -1;
+}
