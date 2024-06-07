@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Table</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      td {
+        padding: 0.7rem 1.5rem;
+      }
+
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      #table::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Hide scrollbar for IE, Edge and Firefox */
+      #table {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+    </style>
+  </head>
+  <body class="overflow-x-hidden pb-5">
+    <section class="w-3/4 mx-auto mt-10">
+      <div
+        class="flex items-center justify-between bg-slate-50 p-5 pb-0 rounded-tr-lg rounded-tl-lg border border-b-0"
+      >
+        <span class="flex gap-3"
+          ><span>
+            <button
+              class="border p-2 rounded-lg h-10 w-11 flex items-center justify-center bg-white"
+            >
+              <img src="./media/filter.svg" alt="" />
+            </button>
+          </span>
+          <span>
+            <div
+              class="border rounded-lg flex items-center h-10 overflow-hidden bg-white"
+              style="width: 320px"
+            >
+              <img src="./media/search.svg" alt="" class="mx-3" /><input
+                type="text"
+                placeholder="Search..."
+                class="font-normal h-full outline-0"
+              />
+            </div> </span
+        ></span>
+        <span>
+          <button
+            class="bg-blue-600 text-white flex items-center justify-center gap-3 h-10 p-3 rounded-lg font-normal"
+          >
+            <img src="./media/plus.svg" alt="" />Add customer
+          </button>
+        </span>
+      </div>
+      <div id="table" class="overflow-x-scroll border border-t-0">
+        <table class="max-w-full">
+          <thead class="bg-slate-50 border-b">
+            <tr>
+              <th>
+                <input type="checkbox" name="" id="" />
+              </th>
+              <th class="font-medium text-slate-600 py-5">
+                <span class="flex gap-1 justify-center"
+                  ># <img src="./media/sort-active.svg" alt=""
+                /></span>
+              </th>
+              <th class="font-medium text-slate-600 py-5">
+                <span class="flex gap-1 justify-center"
+                  >NAME <img src="./media/sort-inactive.svg" alt=""
+                /></span>
+              </th>
+              <th class="font-medium text-slate-600 py-5">DESCRIPTION</th>
+              <th class="font-medium text-slate-600 py-5">
+                <span class="flex gap-1 justify-center"
+                  >STATUS <img src="./media/sort-inactive.svg" alt=""
+                /></span>
+              </th>
+              <th class="font-medium text-slate-600 py-5">RATE</th>
+              <th class="font-medium text-slate-600 py-5">BALANCE</th>
+              <th class="font-medium text-slate-600 py-5">DEPOSIT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="even:bg-slate-50 hover:bg-slate-100">
+              <td class="text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td><b>1</b></td>
+              <td>
+                <span
+                  ><p><b>Ann Culhane</b></p>
+                  <p class="text-slate-400">5684236528</p></span
+                >
+              </td>
+              <td class="text-slate-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nulla...
+              </td>
+              <td>
+                <span class="text-blue-700 bg-blue-100 rounded-full py-0.5 px-2"
+                  >Open</span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-slate-600">$70.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-red-600">-$270.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-slate-600">$500.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+            </tr>
+            <tr class="even:bg-slate-50 hover:bg-slate-100">
+              <td class="text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td><b>2</b></td>
+              <td>
+                <span
+                  ><p><b>Ahmad Rosser</b></p>
+                  <p class="text-slate-400">5684236528</p></span
+                >
+              </td>
+              <td class="text-slate-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nulla...
+              </td>
+              <td>
+                <span
+                  class="text-green-700 bg-green-100 rounded-full py-0.5 px-2"
+                  >Paid</span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-slate-600">$70.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-green-600">-$270.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-slate-600">$500.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+            </tr>
+            <tr class="even:bg-slate-50 hover:bg-slate-100">
+              <td class="text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td><b>3</b></td>
+              <td>
+                <span
+                  ><p><b>Leo Stanton</b></p>
+                  <p class="text-slate-400">5684236528</p></span
+                >
+              </td>
+              <td class="text-slate-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nulla...
+              </td>
+              <td>
+                <span
+                  class="text-slate-700 bg-slate-100 rounded-full py-0.5 px-2"
+                  >Inactive</span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-slate-600">$70.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-green-600">$600.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-slate-600">$500.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+            </tr>
+            <tr class="even:bg-slate-50 hover:bg-slate-100">
+              <td class="text-center">
+                <input type="checkbox" name="" id="" />
+              </td>
+              <td><b>4</b></td>
+              <td>
+                <span
+                  ><p><b>Corey Stanton</b></p>
+                  <p class="text-slate-400">5684236528</p></span
+                >
+              </td>
+              <td class="text-slate-600">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                Nulla...
+              </td>
+              <td>
+                <span class="text-red-700 bg-red-100 rounded-full py-0.5 px-2"
+                  >Due</span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-slate-600">$70.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-green-600">$30.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+              <td>
+                <span class="text-right"
+                  ><p class="text-slate-600">$500.00</p>
+                  <p class="text-slate-400">CAD</p></span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <div
+          class="flex items-center justify-between border rounded-br-lg rounded-bl-lg bg-slate-50 border-t-0 px-5 py-3 text-slate-600"
+        >
+          <p>1 - 10 of 97</p>
+          <span class="flex gap-10">
+            <span class="flex items-center justify-center gap-2"
+              ><p>Rows per page: 10</p>
+              <img src="./media/down.svg" alt=""
+            /></span>
+
+            <span class="flex items-center justify-center gap-3">
+              <button
+                class="border p-2 rounded-lg h-8 w-9 flex items-center justify-center bg-white"
+              >
+                <img src="./media/left.svg" alt="" />
+              </button>
+
+              <p><b>1</b>/10</p>
+
+              <button
+                class="border p-2 rounded-lg h-8 w-9 flex items-center justify-center bg-white"
+              >
+                <img src="./media/right.svg" alt="" />
+              </button>
+            </span>
+          </span>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
