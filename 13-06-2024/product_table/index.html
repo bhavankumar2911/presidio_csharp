@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Table</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- product insert form -->
+      <form action="" id="form">
+        <h2>ADD PRODUCT</h2>
+        <div class="inputs-group">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Product name"
+            value="Blue shirt"
+            required
+          /><input
+            type="number"
+            name="price"
+            id="price"
+            placeholder="Price"
+            min="0"
+            value="450"
+            required
+          />
+        </div>
+
+        <div class="inputs-group">
+          <input
+            type="number"
+            name="qty"
+            id="qty"
+            placeholder="Quantity in hand"
+            min="0"
+            value="76"
+            required
+          />
+          <input
+            type="url"
+            name="image"
+            id="image"
+            placeholder="Image URL"
+            value="https://m.media-amazon.com/images/I/51yIybqYFTL._SX679_.jpg"
+            required
+          />
+        </div>
+
+        <textarea
+          name="desc"
+          id="desc"
+          placeholder="Product description"
+          required
+        >
+    Pure cotton fabric</textarea
+        >
+
+        <input type="submit" value="ADD" />
+      </form>
+
+      <!-- product table -->
+      <div id="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Image</th>
+              <th>Description</th>
+              <th>Price</th>
+              <th>In Stock</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <tr>
+              <td>Laptop</td>
+              <td>
+                <img
+                  src="https://m.media-amazon.com/images/I/71wMYNf8MZL._SX679_.jpg"
+                />
+              </td>
+              <td class="desc">
+                4-core AMD Ryzen 3 5300U 8 threads and 4MB L3 cache deliver
+                powerful performance and swift responsiveness. The AMD Radeon
+                graphics help you experience crisp visuals with vivid clarity.
+              </td>
+              <td>Rs. 31000</td>
+              <td>12</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./js/main.js"></script>
+  </body>
+</html>

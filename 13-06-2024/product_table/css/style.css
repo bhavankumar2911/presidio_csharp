@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  padding: 2rem 0;
+}
+
+h1,
+h2,
+h3 {
+  color: #575fcf;
+}
+
+.inputs-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+input,
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  padding: 0.5rem;
+  outline: 0;
+  display: block;
+  margin-bottom: 1rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
+textarea {
+  min-width: 100%;
+  max-width: 100%;
+}
+
+input[type=submit] {
+  background-color: #575fcf;
+  color: white;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+input[type=submit]:hover {
+  background-color: #3c40c6;
+}
+
+form h2 {
+  margin-bottom: 1rem;
+}
+
+#table-wrapper {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.desc {
+  max-width: 200px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 2rem;
+}
+table thead {
+  background-color: #575fcf;
+  color: white;
+  border: 1px solid #575fcf;
+}
+table thead tr th {
+  padding: 1rem;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+table tbody tr td {
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+table tbody tr td img {
+  width: 200px;
+  height: 200px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+@media (max-width: 600px) {
+  .inputs-group {
+    display: block;
+  }
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap");
+
+$darkblue: #3c40c6;
+$blue: #575fcf;
+$light: #ccc;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+body {
+  padding: 2rem 0;
+}
+
+h1,
+h2,
+h3 {
+  color: $blue;
+}
+
+@mixin card-look {
+  border: 1px solid $light;
+  border-radius: 2px;
+}
+
+.inputs-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+input,
+textarea {
+  @include card-look;
+  padding: 0.5rem;
+  outline: 0;
+  display: block;
+  margin-bottom: 1rem;
+  width: 100%;
+  font-size: 1rem;
+}
+
+textarea {
+  min-width: 100%;
+  max-width: 100%;
+}
+
+input[type="submit"] {
+  background-color: $blue;
+  color: white;
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+input[type="submit"]:hover {
+  background-color: $darkblue;
+}
+
+form {
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+#table-wrapper {
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.desc {
+  max-width: 200px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 2rem;
+
+  thead {
+    background-color: $blue;
+    color: white;
+    border: 1px solid $blue;
+
+    tr {
+      th {
+        padding: 1rem;
+        font-weight: normal;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        border: 1px solid $light;
+        padding: 1rem;
+
+        img {
+          width: 200px;
+          height: 200px;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 600px) {
+  .inputs-group {
+    display: block;
+  }
+}
