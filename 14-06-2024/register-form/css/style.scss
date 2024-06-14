@@ -1,0 +1,43 @@
+.custom-error-message {
+  font-size: 0.875em;
+  margin-top: 0.25rem;
+}
+
+img {
+  width: 50%;
+}
+
+input,
+select,
+button {
+  border-radius: 2px !important;
+}
+
+label {
+  font-weight: 500;
+}
+
+input:focus,
+select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-check-label {
+  font-weight: normal;
+}
+
+@media (min-width: 992px) {
+  img {
+    width: 75%;
+  }
+
+  #img-section {
+    height: 100vh;
+  }
+
+  #form-section {
+    height: 100vh;
+    overflow-y: scroll;
+  }
+}
