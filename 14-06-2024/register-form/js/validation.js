@@ -22,6 +22,8 @@ const professionSelect = document.getElementById("profession-select");
 const professionText = document.getElementById("profession-text");
 const professionFeedback = document.getElementById("professionFeedback");
 
+const alertMessage = document.getElementById("alert");
+
 const showErrorMessage = (inputElement, errorElement, errorMessage) => {
   errorElement.innerText = errorMessage;
   inputElement.classList.add("is-invalid");
@@ -162,4 +164,5 @@ form.addEventListener("submit", (e) => {
   }
 
   professionFeedback.classList.add("d-none");
+  alertMessage.classList.remove("d-none");
 });

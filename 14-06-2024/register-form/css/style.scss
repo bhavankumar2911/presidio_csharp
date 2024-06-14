@@ -27,6 +27,12 @@ select:focus {
   font-weight: normal;
 }
 
+#alert {
+  left: 50% !important;
+  transform: translateX(-50%);
+  top: 50px !important;
+}
+
 @media (min-width: 992px) {
   img {
     width: 75%;

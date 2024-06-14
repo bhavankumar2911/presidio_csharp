@@ -13,6 +13,22 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body class="overflow-x-hidden">
+    <!-- alert -->
+    <div
+      id="alert"
+      class="alert alert-success alert-dismissible w-75 position-fixed d-none"
+      role="alert"
+    >
+      <div>Thankyou for joining with us!</div>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <!-- content -->
     <div class="row">
       <div
         class="col-12 col-lg-6 d-flex align-items-center justify-content-center pt-5"
@@ -46,7 +62,7 @@
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
                   <input
-                    type="email"
+                    type="text"
                     class="form-control"
                     id="email"
                     aria-describedby="emailFeedback"
@@ -91,6 +107,9 @@
                 <div class="mb-3">
                   <label for="age" class="form-label">Age</label>
                   <input type="text" class="form-control" id="age" readonly />
+                  <div class="form-text">
+                    Will be calculated based on your Date of birth!
+                  </div>
                 </div>
               </div>
               <div class="col-12 col-sm-6">
@@ -258,6 +277,11 @@
         </div>
       </div>
     </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
     <script src="./js/validation.js"></script>
   </body>
 </html>
