@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ATM</title>
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/deposit.css" />
+  </head>
+  <body>
+    <header>
+      <div class="b-container header">
+        <a href="/" class="logo">
+          <span class="text-primary">Digi</span><b>ATM</b></a
+        >
+        <nav>
+          <ul class="nav-links">
+            <li><a href="/deposit" class="nav-link">Deposit</a></li>
+            <li><a href="/withdraw" class="nav-link">Withdraw</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="b-container">
+      <h1 class="b-page-title">Deposit</h1>
+      <form action="" id="form">
+        <div>
+          <label for="">Select ATM </label>
+          <select name="" id="atm">
+            <option value="1">123 Park Ave</option>
+            <option value="2">456 Elm St</option>
+          </select>
+        </div>
+        <div>
+          <label for="">Card Number </label><br /><input
+            type="number"
+            name=""
+            id="card"
+          />
+        </div>
+        <div>
+          <label for="">Pin Number </label><br /><input
+            type="number"
+            name=""
+            id="pin"
+          />
+        </div>
+        <div>
+          <label for="">Amount </label><br /><input
+            type="number"
+            name=""
+            id="amount"
+          />
+        </div>
+        <button class="b-btn" type="submit">Deposit</button>
+      </form>
+    </div>
+    <script type="module" src="../js/deposit.js"></script>
+  </body>
+</html>
